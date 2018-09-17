@@ -1,0 +1,29 @@
+body {
+}
+body > .grid {
+    /*height: 100%;*/
+}
+#logoIfce{
+    width: 18%;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+}
+.textoTopo{
+    text-align: center;
+}
+#divFormSegment{
+    margin: 0 auto;
+    display: block;
+    max-width: 74% !important;
+}
+
+#botoes{
+    text-align: right;
+}
+
+#btnEnviar{
+    background-color:#046839 !important;
+    width: 100%;
+}
