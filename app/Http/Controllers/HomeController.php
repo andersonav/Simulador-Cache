@@ -12,7 +12,7 @@ class HomeController extends Controller {
      * @return void
      */
     public function index(Request $resquest) {
-        $address = $this->readFile('trace2');
+        $address = $this->readFile('trace');
         $tamanhoCache = $resquest->cache;
         $tamanhoBloco = $resquest->tamanhoBloco;
         $mapeamento = $resquest->mapeamento;
@@ -111,16 +111,16 @@ class HomeController extends Controller {
 
         $resultados['total_operacoes'] = $resultados['leituras'] + $resultados['escritas'];
 
-        $resultados['cache_leituras_acertos_taxa'] = number_format(($resultados['cache_leituras_acertos'] * 100) / $resultados['cache_leituras'], 4, '.', '');
+//        $resultados['cache_leituras_acertos_taxa'] = number_format(($resultados['cache_leituras_acertos'] * 100) / $resultados['cache_leituras'], 4, '.', '');
 
         //Operações de escrita na cache
-        $resultados['cache_escritas_acertos_taxa'] = number_format(($resultados['cache_escritas_acertos'] * 100) / $resultados['cache_escritas'], 4, '.', '');
+//        $resultados['cache_escritas_acertos_taxa'] = number_format(($resultados['cache_escritas_acertos'] * 100) / $resultados['cache_escritas'], 4, '.', '');
 
         $resultados['total_operacoes_cache'] = $resultados['cache_leituras'] + $resultados['cache_escritas'];
 
-        $cache_taxa_acerto_total = (($resultados['cache_leituras_acertos'] + $resultados['cache_escritas_acertos']) * 100) / $resultados['total_operacoes_cache'];
+//        $cache_taxa_acerto_total = (($resultados['cache_leituras_acertos'] + $resultados['cache_escritas_acertos']) * 100) / $resultados['total_operacoes_cache'];
 
-        $resultados['cache_taxa_acerto_total'] = number_format($cache_taxa_acerto_total, 4, '.', '');
+//        $resultados['cache_taxa_acerto_total'] = number_format($cache_taxa_acerto_total, 4, '.', '');
 
         $resultados['total_operacoes_memoria_principal'] = $resultados['memoria_principal_leituras'] + $resultados['memoria_principal_escritas'];
 
