@@ -20,6 +20,8 @@ class HomeController extends Controller {
         $params['linhas_arquivo'] = 0;
         $params['linhas_leituras_arquivo'] = 0;
         $params['linhas_escritas_arquivo'] = 0;
+        $arrayResultado = array();
+        $contador = 0;
         foreach ($tamanhoCache as $key => $value) {
             foreach ($mapeamento as $valueMap) {
                 foreach ($substituicao as $valueSub) {
@@ -98,6 +100,12 @@ class HomeController extends Controller {
                             //salva rotulo no conjunto
                             $conjunto->gravaRotulo($endereco_rotulo, $valueSub, 0, $memoriaPrincipal, $endereco);
                         }
+                        $resultados['total_operacoes'] = $resultados['leituras'] + $resultados['escritas'];
+        $resultados['total_operacoes_cache'] = $resultados['cache_leituras'] + $resultados['cache_escritas'];
+        $resultados['total_operacoes_memoria_principal'] = $resultados['memoria_principal_leituras'] + $resultados['memoria_principal_escritas'];
+
+                        $arrayResultado[$contador] = $resultados;
+
                     }
 //                    if ($valueSub == 0) {
 //                        
@@ -105,28 +113,27 @@ class HomeController extends Controller {
 //                        
 //                    }
 //                    echo $value . '-' . $valueMap . '-' . $valueSub . ' - ' . $tamanhoBloco . '<br/>';
+                $contador++;
                 }
             }
         }
 
-        $resultados['total_operacoes'] = $resultados['leituras'] + $resultados['escritas'];
+        
 
 //        $resultados['cache_leituras_acertos_taxa'] = number_format(($resultados['cache_leituras_acertos'] * 100) / $resultados['cache_leituras'], 4, '.', '');
 
         //Operações de escrita na cache
 //        $resultados['cache_escritas_acertos_taxa'] = number_format(($resultados['cache_escritas_acertos'] * 100) / $resultados['cache_escritas'], 4, '.', '');
 
-        $resultados['total_operacoes_cache'] = $resultados['cache_leituras'] + $resultados['cache_escritas'];
 
 //        $cache_taxa_acerto_total = (($resultados['cache_leituras_acertos'] + $resultados['cache_escritas_acertos']) * 100) / $resultados['total_operacoes_cache'];
 
 //        $resultados['cache_taxa_acerto_total'] = number_format($cache_taxa_acerto_total, 4, '.', '');
 
-        $resultados['total_operacoes_memoria_principal'] = $resultados['memoria_principal_leituras'] + $resultados['memoria_principal_escritas'];
 
 
 
-        return response()->json($resultados);
+        return response()->json($arrayResultado);
     }
 
     public function readFile($file) {
